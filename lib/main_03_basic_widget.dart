@@ -3,9 +3,10 @@ import 'package:english_words/english_words.dart';
 
 void main() {
   runApp(MaterialApp(
-    title:  "My App",
-    home: SafeArea(child: MyScaffold(),)
-  ));
+      title: "My App",
+      home: SafeArea(
+        child: MyScaffold(),
+      )));
 }
 
 class MyScaffold extends StatelessWidget {
@@ -19,7 +20,11 @@ class MyScaffold extends StatelessWidget {
             "Example title",
             style: Theme.of(context).primaryTextTheme.headline6,
           )),
-          Expanded(child: Center(child: Text("Hello, World!!"),),)
+          Expanded(
+            child: Center(
+              child: Text("Hello, World!!"),
+            ),
+          )
         ],
       ),
     );
@@ -44,10 +49,11 @@ class MyAppBar extends StatelessWidget {
               onPressed: () {
                 print("on press");
               }),
-              Expanded(child: Center(child:title)),
-              IconButton(icon: Icon(Icons.search), 
+          Expanded(child: Center(child: title)),
+          IconButton(
+              icon: Icon(Icons.search),
               tooltip: "Search",
-              onPressed: (){
+              onPressed: () {
                 print("on press search");
               })
         ],
