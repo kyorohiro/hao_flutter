@@ -12,7 +12,12 @@ class MyApp extends StatelessWidget {
           title: Text("Flutter layout demo"),
         ),
         body: Column(
-          children: [_imageSection(), _tileSection(), _buttonSection(context), _textSection()],
+          children: [
+            _imageSection(),
+            _tileSection(),
+            _buttonSection(context),
+            _textSection()
+          ],
         ));
   }
 
@@ -37,8 +42,7 @@ class MyApp extends StatelessWidget {
                   style: TextStyle(color: Colors.grey[500])),
             ],
           )),
-          Icon(Icons.star, color: Colors.red[500]),
-          Text('41')
+          FavoriteWidget(),//Icon(Icons.star, color: Colors.red[500]),Text('41')
         ],
       ),
     );
@@ -92,7 +96,55 @@ class MyApp extends StatelessWidget {
   }
 
   Widget _imageSection() {
-    return Image.asset("images/lake.jpg", width: 600, height:240, fit:BoxFit.cover);
+    return Image.asset("images/lake.jpg",
+        width: 600, height: 240, fit: BoxFit.cover);
+  }
+}
 
+class FavoriteWidget extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return FavoriteWidgetState();
+  }
+}
+
+class FavoriteWidgetState extends State<FavoriteWidget> {
+  bool _isFavorited = true;
+  int _favoriteCount = 41;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min, //
+      children: [
+        //
+        Container(
+          padding: EdgeInsets.all(0),
+          child: IconButton(
+              icon: (_isFavorited
+                  ? Icon(Icons.star)
+                  : Icon(Icons.star_border)), //
+              alignment: Alignment.centerRight,
+              onPressed: () {
+                print("on press fav icon");
+                setState(() {
+                  if (_isFavorited) {
+                    _favoriteCount -= 1;
+                    _isFavorited = false;
+                  } else {
+                    _favoriteCount += 1;
+                    _isFavorited = true;
+                  }
+                });
+              }),
+        ),
+        SizedBox(
+          width: 18,
+          child: Container(
+            child: Text("$_favoriteCount"),
+          ),
+        )
+      ],
+    );
   }
 }
