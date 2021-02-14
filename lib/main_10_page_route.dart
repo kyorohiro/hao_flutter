@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// https://medium.com/flutter/learning-flutters-new-navigation-and-routing-system-7c9068155ade
+https://flutter.dev/docs/cookbook/animation/page-route-animation
 void main() {
   runApp(MaterialApp(title: "Flutter layout", home: Page1()));
 }
