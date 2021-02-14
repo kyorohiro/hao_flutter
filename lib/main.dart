@@ -11,11 +11,20 @@ class PhysicsCardsDragDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: DraggableCard(
+      body: Row(children: [
+      DraggableCard(
         child: FlutterLogo(
           size: 128,
         ),
       ),
+      DraggableCard(
+        child: FlutterLogo(
+          size: 128,
+        ),
+      ),
+
+      ],)
+
     );
   }
 }
@@ -48,6 +57,7 @@ class DraggableCardState extends State<DraggableCard>
       },
       onPanUpdate: (details) {
         setState(() {
+         // print("update ${details.delta.dx}:${details.delta.dy}");
           _dragAlignment += Alignment(
             details.delta.dx / (size.width / 2),
             details.delta.dy / (size.height / 2),
@@ -55,7 +65,7 @@ class DraggableCardState extends State<DraggableCard>
         });
       },
       onPanEnd: (details) {
-        print("onPanEnd");
+        print("onPanEnd ${details.velocity.pixelsPerSecond}:${size}");
         _runAnimation(details.velocity.pixelsPerSecond, size);
       },
       child: cont,
@@ -71,6 +81,7 @@ class DraggableCardState extends State<DraggableCard>
         end: Alignment.center,
       ),
     );
+    
     // Calculate the velocity relative to the unit interval, [0,1],
     // used by the animation controller.
     final unitsPerSecondX = pixelsPerSecond.dx / size.width;
@@ -84,9 +95,11 @@ class DraggableCardState extends State<DraggableCard>
       damping: 1,
     );
 
+    
     final simulation = SpringSimulation(spring, 0, 1, -unitVelocity);
 
     _controller.animateWith(simulation);
+
   }
 
   @override
