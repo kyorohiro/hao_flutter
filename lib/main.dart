@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
-// https://flutter.dev/docs/cookbook/animation/physics-simulation
+// https://androidmonks.com/sliverappbar-flutter/
 
 void main() {
   runApp(MaterialApp(title: "Flutter layout", home: PhysicsCardsDragDemo()));
